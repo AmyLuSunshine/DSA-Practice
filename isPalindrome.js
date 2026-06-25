@@ -99,8 +99,24 @@ function problem(word) {
 
 console.log(problem(word1));
 console.log(problem(word2));
+console.log(problem("level")); //true
+console.log(problem("hello")); //false
 
 // string.length, is not byte count.
 console.log("racecar".length); // 7
 console.log("a".length); // 1
 console.log("😀".length); // 2
+
+/* function isPalindrome(array) {
+  let left = 0;
+  let right = array.length - 1;
+
+  while (left !== right) {
+    if (array[left] !== array[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+} */
