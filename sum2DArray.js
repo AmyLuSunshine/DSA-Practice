@@ -1,3 +1,4 @@
+/// OH 1
 // function sumArray(arr, start, end){
 //     let final = arr[end]
 //     let length = end - start + 1
@@ -8,9 +9,7 @@
 //     return sum;
 // }
 
-
-
-//6/15/2026 - Jessica
+//6/15/2026 - Jessica OH 2
 
 // function sum2DArray(arr) {
 //     let sum = 0
@@ -25,7 +24,7 @@
 // console.log(sum2DArray([[1,2],[3,4]]))
 // console.log(sum2DArray([[1,1],[1,1]]))
 
-
+// OH 3
 // function recurionSum2DArray(arr, i, j){
 //     let sum = 0
 //     //base case
@@ -33,10 +32,10 @@
 //         return sum
 
 //     //recursive call
-    
+
 //     let i = arr.length
 //     let j = arr[i].length
-//     return sum + 
+//     return sum +
 
 //     return (recurionSum2DArray(arr[i++][j++],))
 // }
@@ -52,29 +51,34 @@
 
 //     //recursive call
 //     sum += arr[i][j]
-   
+
 //     return (recurionSum2DArray(arr,i++,j++))
 // }
 
 //arr[0]
-function arrRecursionSum (arr){
-    let sum = 0;
-    //base case
-    if(!Array.isArray(arr)){
-        sum += arr
+function arrRecursionSum(arr) {
+  let sum = 0;
+  //base case
+  if (!Array.isArray(arr)) {
+    sum += arr;
+  }
+  //recursive case
+  //arr[0][0]
+  else {
+    for (let i = 0; i < arr.length; i++) {
+      arrRecursionSum(arr[i]);
+      sum += arrRecursionSum(arr[i]);
     }
-    //recursive case
-    //arr[0][0]
-    else{
-        for(let i=0; i<arr.length; i++){
-            arrRecursionSum(arr[i])
-            sum += arrRecursionSum(arr[i])
-        }
-    }
-    return sum
+  }
+  return sum;
 }
 
-console.log("recursion")
-console.log(arrRecursionSum([[1]]))
-console.log(arrRecursionSum([[1,1]]))
-console.log(arrRecursionSum([[1,2],[2,3]]))
+console.log("recursion");
+console.log(arrRecursionSum([[1]]));
+console.log(arrRecursionSum([[1, 1]]));
+console.log(
+  arrRecursionSum([
+    [1, 2],
+    [2, 3],
+  ]),
+);
