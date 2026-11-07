@@ -1,21 +1,22 @@
 '''
-Two way to Print: 
+Two way to Print Tree: 
 Depth First Search:
-    - DFS - iterator / Recursion - Pop from last
+    - DFS - iterator / Recursion - Pop from last, Stack
     solution deeper within,
-    Use stack: FILO
+    Use Stack: FILO
 
     Inorder: LNR - sorted ascending 
     Preorder: NLR - process root first, copy tree, evaluation
     Postorder: LRN - process subtree first, delete a tree, evaluation
 
 Breadth First Search: 
-    BFS - Iterator - Pop from top
+    BFS - Iterator - Pop from top, Queue
 
     solution closer to root, 
     high to low, level by level, left-right
     Use Queue: FIFO
-Level Order: 
+    
+    Level Order: 
 
 
 '''
@@ -151,6 +152,7 @@ class Puff():
         self.right = right
 
 def print_design(design):
+    """
     result = []
     queue = deque()
     
@@ -170,16 +172,86 @@ def print_design(design):
         # level += 1
     # print(level)
     return result
-            
+    """
+    #empty list to store result
+    result = [] 
+    
+    # basecase if tree is empty
+    if not design: return result
+
+    #create the queue, add the root
+    node_queue = [design]
+
+    # pop the 0 index first item everytime, FIFO
+    while node_queue:
+        # keep pop and save it's val to result
+        current = node_queue.pop(0)
+        result.append(current.val)
+
+        if current.left: node_queue.append(current.left)
+        if current.right: node_queue.append(current.right)
+
+    return result
+
+
 croquembouche = Puff("Vanilla", 
                     Puff("Chocolate", Puff("Vanilla"), Puff("Matcha")), 
                     Puff("Strawberry"))
 print(print_design(croquembouche))
 
 # Problem 3: Maximum Tiers in Cake
+'''
+BFS
+if node is none: return 0
+level = 0
+while Queue:
+    if node is none: return 0
+    
+    current = queue.pop()
 
+    if current.left: queue.append(current.left)
+    if current.left: queue.append(current.left)
+
+    level += 1
+'''
+class TreeNode():
+     def __init__(self, value, left=None, right=None):
+        self.val = value
+        self.left = left
+        self.right = right
+
+def max_tiers(cake):
+    """
+    if not cake: return 0
+
+    level = 0
+    queue = [cake]
+
+    while queue:
+        current = queue.pop(0)
+        # print(current.val)
+        if current.left: queue.append(current.left)
+        if current.left: queue.append(current.left)
+
+        level += 1
+
+    return level
+    """
+    if not cake: return 0
+
+    left_height = 1 + max_tiers(cake.left)
+    right_height = 1 + max_tiers(cake.right)
+
+    return max(left_height, right_height)
+
+
+cake_sections = ["Chocolate", "Vanilla", "Strawberry", None, None, "Chocolate", "Coffee"]
+cake = build_tree(cake_sections)
+
+print(max_tiers(cake))
 
 # Problem 4: Maximum Tiers in Cake II
+
 
 
 # Problem 5: Can Fulfill Order
